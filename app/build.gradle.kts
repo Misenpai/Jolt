@@ -58,5 +58,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
-    implementation("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation(libs.tensorflow.lite)
+    implementation (libs.ui)
+    implementation (libs.androidx.material)
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.activity.compose)
 }
