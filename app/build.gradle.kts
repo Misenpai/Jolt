@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -49,6 +50,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.runtime.android)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.espresso.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -63,4 +67,12 @@ dependencies {
     implementation (libs.androidx.material)
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.activity.compose)
+
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.indicators)
+    implementation (libs.firebase.auth)
+    implementation (libs.play.services.auth)
+
+    implementation (libs.androidx.material.icons.extended)
+    implementation ("com.google.code.gson:gson:2.10.1")
 }

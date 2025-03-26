@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.jolt" />
+                  <option name="mobileSdkAppId" value="1:195026763295:android:53a751b7e42ee930541f2a" />
+                  <option name="projectId" value="safenet-91680" />
+                  <option name="projectNumber" value="195026763295" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

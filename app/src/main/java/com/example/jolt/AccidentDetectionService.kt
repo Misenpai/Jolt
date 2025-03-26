@@ -21,12 +21,10 @@ class AccidentDetectionService : Service(), SensorEventListener {
 
     override fun onCreate() {
         super.onCreate()
-        // Initialize sensor manager and accelerometer
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
 
-        // Load the TensorFlow Lite model
         try {
             tflite = Interpreter(loadModelFile())
         } catch (e: Exception) {
@@ -49,7 +47,6 @@ class AccidentDetectionService : Service(), SensorEventListener {
             val accelY = event.values[1]
             val magnitude = sqrt((accelX * accelX + accelY * accelY).toDouble()).toFloat()
 
-            // Prepare input for the model
             val input = FloatArray(2).apply {
                 this[0] = accelX
                 this[1] = accelY
@@ -57,12 +54,9 @@ class AccidentDetectionService : Service(), SensorEventListener {
             val inputBuffer = arrayOf(input)
             val output = Array(1) { FloatArray(1) }
 
-            // Run inference
             tflite.run(inputBuffer, output)
 
-            // Check if an accident is detected
             if (output[0][0] >= 0.5 && magnitude > 15.0) {
-                // Launch MainActivity with an extra indicating an accident
                 val intent = Intent(this, MainActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                     putExtra("accident_detected", true)
@@ -72,9 +66,7 @@ class AccidentDetectionService : Service(), SensorEventListener {
         }
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        // Not needed for this implementation
-    }
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     override fun onDestroy() {
         super.onDestroy()
@@ -82,7 +74,5 @@ class AccidentDetectionService : Service(), SensorEventListener {
         tflite.close()
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null // This is a started service, not a bound service
-    }
+    override fun onBind(intent: Intent?): IBinder? = null
 }
