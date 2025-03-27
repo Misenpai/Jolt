@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Jolt</string>
+    <string name="emergency_message">Emergency! I need help!</string>
 </resources>

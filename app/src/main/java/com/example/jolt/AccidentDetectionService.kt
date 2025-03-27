@@ -12,7 +12,6 @@ import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
-import kotlin.math.sqrt
 
 class AccidentDetectionService : Service(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
@@ -45,7 +44,7 @@ class AccidentDetectionService : Service(), SensorEventListener {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
             val accelX = event.values[0]
             val accelY = event.values[1]
-            val magnitude = sqrt((accelX * accelX + accelY * accelY).toDouble()).toFloat()
+            val magnitude = Math.sqrt((accelX * accelX + accelY * accelY).toDouble()).toFloat()
 
             val input = FloatArray(2).apply {
                 this[0] = accelX
